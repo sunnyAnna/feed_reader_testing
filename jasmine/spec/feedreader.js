@@ -35,11 +35,9 @@ $(function () {
 	describe('The Menu', function () {
 		var hidden, icon, initCl = document.body.getAttribute('class');
 		beforeEach(function () {
+			document.body.setAttribute('class', initCl);
 			hidden = 'menu-hidden';
 			icon = $('.menu-icon-link');
-		});
-		afterEach(function () {
-			document.body.setAttribute('class', initCl);
 		});
 		/**
 		 * @description Checks if the menu is defined and hidden by default.
@@ -67,15 +65,12 @@ $(function () {
 	 * @description Checks for the existance of at least a single .entry element within the .feed container after loadFeed function loads.
 	 */
 	describe('Initial Entries', function () {
-		var container;
 		beforeEach(function (done) {
-			container = $('.feed');
 			loadFeed(0, done);
 		});
-		it('load at least a single element into the container', function (done) {
-			var a = container.children();
+		it('load at least a single element into the container', function () {
+			var a = document.querySelectorAll('.feed .entry');
 			expect(a.length).toBeGreaterThan(0);
-			done();
 		});
 	});
 
@@ -83,20 +78,18 @@ $(function () {
 	 * @description Checks if content changes when a new feed is loaded
 	 */
 	describe('New Feed Selection', function () {
-		var oldTitle;
+		var oldContent;
 		beforeEach(function (done) {
 			loadFeed(0, function () {
-				oldTitle = $('.header-title').text();
+				oldContent = document.querySelectorAll('.feed .entry');
 				loadFeed(1, done);
 			});
 		});
-		it('loads new content', function (done) {
-			var newTitle = $('.header-title').text();
-			expect(newTitle).not.toEqual(oldTitle);
-			done();
-		});
-		afterEach(function () {
-			loadFeed(0);
+		it('loads new content', function () {
+			var newContent = document.querySelectorAll('.feed .entry');
+			expect(newContent[0].textContent).toBeDefined();
+			expect(newContent[0].textContent).not.toBe('');
+			expect(newContent[0].textContent).not.toEqual(oldContent[0].textContent);
 		});
 	});
 }());

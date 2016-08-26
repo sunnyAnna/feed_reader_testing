@@ -10,6 +10,14 @@ Check the test suites in the Jasmine Reporter element at the bottom of the page.
 All of the tests are automatically run upon initial page load.
 Clicking on an individual test will run the chosen test.
 
+To run the app locally: 
+
+1. Load index.html
+
+2. Open jasmine/spec/feedreader.js to check the test suites.
+
+3. Open js/app.js to access the app's functions.
+
 ### GOALS
 
 Write test suites and tests to ensure that:
