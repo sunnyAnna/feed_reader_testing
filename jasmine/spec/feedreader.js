@@ -17,8 +17,7 @@ $(function () {
 		 */
 		it('have a non-empty URL', function () {
 			for (i; i < j; i++) {
-				expect(allFeeds[i].url).toBeDefined();
-				expect(allFeeds[i].url).not.toBe('');
+				expect(allFeeds[i].url).toBeTruthy();
 			}
 		});
 		/**
@@ -26,8 +25,7 @@ $(function () {
 		 */
 		it('have a non-empty name', function () {
 			for (i; i < j; i++) {
-				expect(allFeeds[i].name).toBeDefined();
-				expect(allFeeds[i].name).not.toBe('');
+				expect(allFeeds[i].name).toBeTruthy();
 			}
 		});
 	});
@@ -87,8 +85,7 @@ $(function () {
 		});
 		it('loads new content', function () {
 			var newContent = document.querySelectorAll('.feed .entry');
-			expect(newContent[0].textContent).toBeDefined();
-			expect(newContent[0].textContent).not.toBe('');
+			expect(newContent[0].textContent).toBeTruthy();
 			expect(newContent[0].textContent).not.toEqual(oldContent[0].textContent);
 		});
 	});
